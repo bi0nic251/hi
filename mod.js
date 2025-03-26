@@ -10,8 +10,6 @@ import net.lax1dude.eaglercraft.v1_8.minecraftforge.fml.common.registry.GameRegi
 import net.lax1dude.eaglercraft.v1_8.minecraft.init.Blocks;
 import net.lax1dude.eaglercraft.v1_8.minecraft.init.Items;
 import net.lax1dude.eaglercraft.v1_8.minecraft.item.ItemStack;
-import net.lax1dude.eaglercraft.v1_8.minecraft.client.renderer.texture.IIconRegister;
-import net.lax1dude.eaglercraft.v1_8.minecraft.util.ResourceLocation;
 import net.lax1dude.eaglercraft.v1_8.minecraft.command.CommandBase;
 import net.lax1dude.eaglercraft.v1_8.minecraft.command.ICommandSender;
 import net.lax1dude.eaglercraft.v1_8.minecraft.server.MinecraftServer;
@@ -31,17 +29,12 @@ public class DirtSwordMod {
             public boolean isDamageable() {
                 return false;
             }
-            
-            @Override
-            public void registerIcons(IIconRegister iconRegister) {
-                this.itemIcon = iconRegister.registerIcon(MODID + ":dirt_sword");
-            }
         };
         dirtSword.setUnlocalizedName("dirt_sword");
         dirtSword.setRegistryName("dirt_sword");
         dirtSword.setCreativeTab(CreativeTabs.COMBAT);
         dirtSword.setMaxStackSize(1);
-        
+
         GameRegistry.register(dirtSword);
     }
 
@@ -54,7 +47,7 @@ public class DirtSwordMod {
             'D', Blocks.DIRT, 
             'S', Items.STICK
         );
-        
+
         MinecraftServer.getServer().getCommandManager().registerCommand(new CommandBase() {
             @Override
             public String getCommandName() {
