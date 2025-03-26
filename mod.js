@@ -12,6 +12,9 @@ import net.lax1dude.eaglercraft.v1_8.minecraft.init.Items;
 import net.lax1dude.eaglercraft.v1_8.minecraft.item.ItemStack;
 import net.lax1dude.eaglercraft.v1_8.minecraft.client.renderer.texture.IIconRegister;
 import net.lax1dude.eaglercraft.v1_8.minecraft.util.ResourceLocation;
+import net.lax1dude.eaglercraft.v1_8.minecraft.command.CommandBase;
+import net.lax1dude.eaglercraft.v1_8.minecraft.command.ICommandSender;
+import net.lax1dude.eaglercraft.v1_8.minecraft.server.MinecraftServer;
 
 @Mod(modid = DirtSwordMod.MODID, version = DirtSwordMod.VERSION, name = DirtSwordMod.NAME)
 public class DirtSwordMod {
@@ -51,5 +54,30 @@ public class DirtSwordMod {
             'D', Blocks.DIRT, 
             'S', Items.STICK
         );
+        
+        MinecraftServer.getServer().getCommandManager().registerCommand(new CommandBase() {
+            @Override
+            public String getCommandName() {
+                return "dirtsword";
+            }
+
+            @Override
+            public String getCommandUsage(ICommandSender sender) {
+                return "/dirtsword - Gives you the Dirt Sword";
+            }
+
+            @Override
+            public void processCommand(ICommandSender sender, String[] args) {
+                if (sender instanceof net.lax1dude.eaglercraft.v1_8.minecraft.entity.player.EntityPlayer) {
+                    net.lax1dude.eaglercraft.v1_8.minecraft.entity.player.EntityPlayer player = (net.lax1dude.eaglercraft.v1_8.minecraft.entity.player.EntityPlayer) sender;
+                    player.inventory.addItemStackToInventory(new ItemStack(dirtSword));
+                }
+            }
+
+            @Override
+            public int getRequiredPermissionLevel() {
+                return 0;
+            }
+        });
     }
 }
