@@ -10,6 +10,8 @@ import net.lax1dude.eaglercraft.v1_8.minecraftforge.fml.common.registry.GameRegi
 import net.lax1dude.eaglercraft.v1_8.minecraft.init.Blocks;
 import net.lax1dude.eaglercraft.v1_8.minecraft.init.Items;
 import net.lax1dude.eaglercraft.v1_8.minecraft.item.ItemStack;
+import net.lax1dude.eaglercraft.v1_8.minecraft.client.renderer.texture.IIconRegister;
+import net.lax1dude.eaglercraft.v1_8.minecraft.util.ResourceLocation;
 
 @Mod(modid = DirtSwordMod.MODID, version = DirtSwordMod.VERSION, name = DirtSwordMod.NAME)
 public class DirtSwordMod {
@@ -25,6 +27,11 @@ public class DirtSwordMod {
             @Override
             public boolean isDamageable() {
                 return false;
+            }
+            
+            @Override
+            public void registerIcons(IIconRegister iconRegister) {
+                this.itemIcon = iconRegister.registerIcon(MODID + ":dirt_sword");
             }
         };
         dirtSword.setUnlocalizedName("dirt_sword");
