@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forge to EaglerForge Mod Converter</title>
+</head>
+<body>
+    <h1>Forge .jar to EaglerForge .js Converter</h1>
+    <input type="file" id="jarInput" accept=".jar">
+    <button onclick="convertMod()">Convert</button>
+    <pre id="output"></pre>
+
+    <script>
+        function convertMod() {
+            const fileInput = document.getElementById('jarInput');
+            if (fileInput.files.length === 0) {
+                alert("Please select a .jar mod file.");
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                const arrayBuffer = event.target.result;
+                
+                // Placeholder conversion logic
+                document.getElementById('output').textContent = "Converting " + file.name + "...\n";
+                document.getElementById('output').textContent += "(Simulated conversion - actual implementation needed)";
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+</body>
+</html>
