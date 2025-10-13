@@ -39,7 +39,7 @@
             align-content: flex-start;
             padding-top: 50px;
             box-sizing: border-box;
-            user-select: none; /* Prevent text selection */
+            user-select: none;
         }
 
         .text-row {
@@ -81,14 +81,29 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
             width: 80px;
             height: 80px;
             background-image: url('https://67.media.tumblr.com/9062ac3fce9516d3bcfe023fff7b04b2/tumblr_nq636dhhLU1qli909o1_540.png');
             background-size: cover;
             background-repeat: no-repeat;
-            pointer-events: none; /* Allows mouse events to pass through */
-            transition: transform 0.1s linear;
+            pointer-events: none;
+            
+            /* Add animation for spinning and random movement */
+            animation: move-and-spin 12s ease-in-out infinite;
+        }
+
+        @keyframes move-and-spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            10% { transform: translate(10%, -10%) rotate(40deg); }
+            20% { transform: translate(30%, -20%) rotate(120deg); }
+            30% { transform: translate(-40%, 10%) rotate(180deg); }
+            40% { transform: translate(20%, 30%) rotate(220deg); }
+            50% { transform: translate(-10%, 40%) rotate(280deg); }
+            60% { transform: translate(-30%, -30%) rotate(360deg); }
+            70% { transform: translate(40%, -10%) rotate(450deg); }
+            80% { transform: translate(0%, 20%) rotate(520deg); }
+            90% { transform: translate(15%, -50%) rotate(600deg); }
+            100% { transform: translate(-50%, -50%) rotate(720deg); }
         }
     </style>
 </head>
@@ -114,21 +129,5 @@
         </div>
         <div class="planchette"></div>
     </div>
-
-    <script>
-        // Embed all JavaScript for the single-page application
-        document.addEventListener('DOMContentLoaded', () => {
-            const planchette = document.querySelector('.planchette');
-            const ouijaBoard = document.querySelector('.ouija-board');
-
-            ouijaBoard.addEventListener('mousemove', (event) => {
-                const boardRect = ouijaBoard.getBoundingClientRect();
-                const x = event.clientX - boardRect.left;
-                const y = event.clientY - boardRect.top;
-
-                planchette.style.transform = `translate(${x - planchette.offsetWidth / 2}px, ${y - planchette.offsetHeight / 2}px)`;
-            });
-        });
-    </script>
 </body>
 </html>
