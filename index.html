@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouija Board</title>
+    <style>
+        /* Embed all CSS for the single-page application */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            font-family: 'Times New Roman', Times, serif;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .ouija-board {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background-image: url('https://cl.ly/293E2Q1h3g0Q/ouija-board.svg');
+            background-size: cover;
+            border: 10px solid #222;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .text-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: flex-start;
+            padding-top: 50px;
+            box-sizing: border-box;
+            user-select: none; /* Prevent text selection */
+        }
+
+        .text-row {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            margin: 10px 0;
+            font-size: 2em;
+        }
+
+        .words {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 50px;
+            font-size: 2.5em;
+        }
+        
+        .words .word-no {
+            position: absolute;
+            left: 5%;
+        }
+
+        .words .word-yes {
+            position: absolute;
+            right: 5%;
+        }
+
+        .word-goodbye {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+            font-size: 1.8em;
+        }
+
+        .planchette {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background-image: url('https://67.media.tumblr.com/9062ac3fce9516d3bcfe023fff7b04b2/tumblr_nq636dhhLU1qli909o1_540.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            pointer-events: none; /* Allows mouse events to pass through */
+            transition: transform 0.1s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="ouija-board">
+        <div class="text-container">
+            <div class="words">
+                <span class="word-no">NO</span>
+                <span class="word-yes">YES</span>
+            </div>
+            <div class="text-row">
+                <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span>
+            </div>
+            <div class="text-row">
+                <span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+            </div>
+            <div class="text-row numbers">
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span>
+            </div>
+            <div class="words">
+                <span class="word-goodbye">GOODBYE</span>
+            </div>
+        </div>
+        <div class="planchette"></div>
+    </div>
+
+    <script>
+        // Embed all JavaScript for the single-page application
+        document.addEventListener('DOMContentLoaded', () => {
+            const planchette = document.querySelector('.planchette');
+            const ouijaBoard = document.querySelector('.ouija-board');
+
+            ouijaBoard.addEventListener('mousemove', (event) => {
+                const boardRect = ouijaBoard.getBoundingClientRect();
+                const x = event.clientX - boardRect.left;
+                const y = event.clientY - boardRect.top;
+
+                planchette.style.transform = `translate(${x - planchette.offsetWidth / 2}px, ${y - planchette.offsetHeight / 2}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
